@@ -4,9 +4,10 @@ import { AiOutlineFacebook, AiOutlineInstagram } from "react-icons/ai";
 import { CiMail } from "react-icons/ci";
 import { SiGooglemaps } from "react-icons/si";
 import Navbar from "../../components/Navbar";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Rating from '@mui/material/Rating';
 import { useState } from "react";
+
 const Cuser = () => {
   const [value, setValue] = useState(0);
   const {cid} = useParams();
