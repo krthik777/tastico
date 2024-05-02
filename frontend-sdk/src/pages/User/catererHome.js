@@ -34,6 +34,9 @@ const CatererHome = () => {
       caterer={cid}
     ></Postbid>
   ));
+
+  const postcount = posts.length;
+
   return (
     <div className="w-screen h-screen">
       <Navbar />
@@ -47,10 +50,15 @@ const CatererHome = () => {
           </p>
         </div>
         <div className="Count flex w-2/3 bg-white h-full items-center rounded-[6px] shadow-xl">
-          <Usercount ncaterer="352" nuser="600" nbid="20156" nevent="1032" />
+          <Usercount
+            ncaterer="352"
+            nuser="600"
+            nbid="20156"
+            nevent={postcount}
+          />
         </div>
       </div>
-      <div className="text-2xl font-semibold my-8 ml-12 ">
+      <div className="text-2xl font-semibold my-8 ml-12 font-mono">
         Events happenening near you :
       </div>
       <div className="grid grid-cols-4 gap-x-3 mt-4 ml-10 gap-y-8">

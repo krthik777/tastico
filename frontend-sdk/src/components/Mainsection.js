@@ -7,10 +7,14 @@ const Mainsection = () => {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
-  if (token) {
-    navigate("/home");
-  }
-  
+
+ 
+  useEffect(() => {
+    if (token) {
+      navigate("/home");
+    }
+  }, [token, navigate]);
+
   let data =
     prompts.catchlines[Math.floor(Math.random() * prompts.catchlines.length)];
 

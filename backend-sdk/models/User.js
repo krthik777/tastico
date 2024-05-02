@@ -1,11 +1,11 @@
-import mongoose, { Schema,model } from "mongoose"
+import mongoose, { Schema, model } from "mongoose";
 
 const schema = new Schema({
-  firstname:{
+  firstname: {
     type: String,
     required: true,
   },
-  lastname:{
+  lastname: {
     type: String,
     required: true,
   },
@@ -23,7 +23,11 @@ const schema = new Schema({
   },
   username: {
     type: String,
-  }
+  },
+  location: {
+    type: String,
+    required: true,
+  },
 });
 
 export default model("User", schema);
