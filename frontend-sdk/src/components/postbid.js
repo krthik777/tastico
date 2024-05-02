@@ -6,9 +6,22 @@ import Inputfield from "./TextInput.js";
 import { useState } from "react";
 import axios from "axios";
 
-const Postbid = ({ postheadline = "postheadline", uname="uname", date="date", description="Blah blah",deadline="deadline",bids,num,eventcount,postid,caterer}) => {
-  const [bidamount,setBidamount] = useState(0);
-  const [pitch,setPitch] = useState("");
+import { Button } from "flowbite-react";
+
+const Postbid = ({
+  postheadline = "postheadline",
+  uname = "uname",
+  date = "date",
+  description = "Blah blah",
+  deadline = "deadline",
+  bids,
+  num,
+  eventcount,
+  postid,
+  caterer,
+}) => {
+  const [bidamount, setBidamount] = useState(0);
+  const [pitch, setPitch] = useState("");
 
   const handleClick = () => {
     console.log("clicked");
@@ -16,74 +29,78 @@ const Postbid = ({ postheadline = "postheadline", uname="uname", date="date", de
     console.log(pitch);
     console.log(postid);
     console.log(caterer);
-    axios.post(`http://localhost:3001/bids/cbid/${postid}`,{
-      caterer: caterer,
-      amount: bidamount,
-      pitch: pitch
-    }).then((res)=>{
-      console.log(res);
-    }).catch((err)=>{
-      console.log(err);
-    }
-    )
+    axios
+      .post(`http://localhost:3001/bids/cbid/${postid}`, {
+        caterer: caterer,
+        amount: bidamount,
+        pitch: pitch,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     window.location.reload();
-  }
-  const iterbidsofar = bids.map((item)=>(
+  };
+  const iterbidsofar = bids.map((item) => (
     <Bidsofar c_name={item.c_name} amount={item.amount}></Bidsofar>
-  ))
+  ));
   return (
     <div>
-      <label htmlFor={`my-modal-${num}`} className="btn h-fit w-fit bg-white flex-row py-20 shadow-xl">
+      <label
+        htmlFor={`my-modal-${num}`}
+        className="btn h-fit w-fit bg-white flex-row py-20 shadow-xl"
+      >
         <div>
           <div className="text-3xl text-black ">{postheadline}</div>
           <div class="inline-flex items-center justify-center w-full">
-              <span class="w-80 mb-6 h-px bg-gray-200 border-0 dark:bg-gray-700 ">
-                {" "}
-              </span>
-            </div>
-        <div className="flex flex-cols">
-
-
-          <div>
-          <div class="relative w-24 h-24 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 left-3  ">
-            <svg
-              class="absolute w-28 h-28 text-gray-400 -left-1"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
+            <span class="w-80 mb-6 h-px bg-gray-200 border-0 dark:bg-gray-700 ">
+              {" "}
+            </span>
           </div>
-          {/* <div className="text-center p-4 ">{uname}</div> */}
-          </div>
-
-          <div className="p-4 ml-14 mt-1  mb-4">
-            <div className="text-black text-center text-2xl font-semibold">
-              {uname}
+          <div className="flex flex-cols">
+            <div>
+              <div class="relative w-24 h-24 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 left-3  ">
+                <svg
+                  class="absolute w-28 h-28 text-gray-400 -left-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              {/* <div className="text-center p-4 ">{uname}</div> */}
             </div>
-            <div className="p-2 text-black">{description}</div>
-            {/* <div className="text-center mb-2">{uname}</div>
+
+            <div className="p-4 ml-14 mt-1  mb-4">
+              <div className="text-black text-center text-2xl font-semibold">
+                {uname}
+              </div>
+              <div className="p-2 text-black">{description}</div>
+              {/* <div className="text-center mb-2">{uname}</div>
             <div className="text-center">{date}</div> */}
+            </div>
+          </div>
+          <div className="flex justify-between items-center gap-x-4 p-4 rounded-md text-xs text-white">
+            <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-3 py-0">
+              Event Count: {eventcount}
+            </Button>
+
+            <Button className="bg-red-500 hover:bg-red-600 text-white rounded-lg px-3 py-0">
+              Bids: {bids.length}
+            </Button>
+
+            <Button className="bg-gray-50 shadown-xl hover:bg-green-600 text-white rounded-lg px-3 py-0">
+              Deadline: {deadline}
+            </Button>
           </div>
         </div>
-        <div className="flex justify-between gap-x-12 text-blue-300 text-xs mt-4">
-            <div>
-              Event Count : {eventcount}
-            </div>
-            <div>
-              No.of bids : {bids.length}
-            </div>
-            <div>
-              Deadline : {deadline}
-            </div>
-        </div>
-        </div>
-       
       </label>
 
       <input type="checkbox" id={`my-modal-${num}`} className="modal-toggle" />
@@ -111,9 +128,7 @@ const Postbid = ({ postheadline = "postheadline", uname="uname", date="date", de
                   <div className="text-xl font-semibold mb-6 ml-2">
                     Bids so far
                   </div>
-                  <div>
-                  {iterbidsofar}
-                  </div>
+                  <div>{iterbidsofar}</div>
                 </div>
               </div>
               <div className="w-1/2 mx-6">
@@ -124,7 +139,7 @@ const Postbid = ({ postheadline = "postheadline", uname="uname", date="date", de
 
                   <div className="mt-2">
                     <Inputfield
-                      valueState={[bidamount,setBidamount]}
+                      valueState={[bidamount, setBidamount]}
                       type="text"
                       placeholder="Enter your bid :"
                       className="border-gray-300 py-1 px-2 w-full rounded"
@@ -132,15 +147,17 @@ const Postbid = ({ postheadline = "postheadline", uname="uname", date="date", de
                   </div>
                   <div className="mt-2">
                     <Inputfield
-                      valueState={[pitch,setPitch]}
+                      valueState={[pitch, setPitch]}
                       type="text"
                       placeholder="Enter your pitch :"
                       className="border-gray-300 py-1 px-2 w-full rounded"
                     />
                   </div>
                   <div className="flex justify-end">
-                    <button class=" mr-2 mt-4  w-[90px] py-3 text-center text-white font-semibold rounded-xl hover bg-slate-600 hover:bg-slate-500 active:bg-slate-600 focus:outline-none focus:ring focus:ring-slate-500 duration-50 transition ease-in-out delay-150 "
-                    onClick={handleClick}>
+                    <button
+                      class=" mr-2 mt-4  w-[90px] py-3 text-center text-white font-semibold rounded-xl hover bg-slate-600 hover:bg-slate-500 active:bg-slate-600 focus:outline-none focus:ring focus:ring-slate-500 duration-50 transition ease-in-out delay-150 "
+                      onClick={handleClick}
+                    >
                       Submit
                     </button>
                   </div>

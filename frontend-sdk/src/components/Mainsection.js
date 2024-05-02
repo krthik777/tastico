@@ -19,7 +19,7 @@ const Mainsection = () => {
     prompts.catchlines[Math.floor(Math.random() * prompts.catchlines.length)];
 
   return (
-    <div className="w-full h-full scrollbar-hide">
+    <div className="w-full h-full overflow-hidden">
       <section
         style={{
           backgroundImage:
@@ -28,46 +28,51 @@ const Mainsection = () => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
-        className="flex flex-col lg:pb-[24px] items-center mobile:w-full mobile:h-full p-4 mobile:pb-20 mobile:pt-20 bg-black lg:py-0"
+        className="flex flex-col items-center p-4 mobile:pb-20 mobile:pt-20 bg-black w-full lg:py-0"
       >
-        <div className="flex flex-col items-center justify-center w-full h-full scrollbar-hide">
-          <div className="w-full px-8 py-4 mt-12 text-center text-white border-dashed border-2 lg:w-2/3 md:mt-20 md:w-2/3">
-            <p className="mb-2 sm:text-5xl mobile:text-3xl font-bold text-phorange font-mont">
+        <div className="flex flex-col items-center justify-center w-full h-full overflow-y-auto">
+          <div className="w-full lg:w-2/3 border-dashed border-2 p-6 lg:mt-16 mt-12 text-center text-white">
+            <h2 className="font-bold font-mont text-3xl sm:text-5xl mb-6">
               {data.heading}
-              <br />
-            </p>
-            <p className="px-4 sm:text-xl mobile:text-base text-justify mt-8 font-mont">
+            </h2>
+            <p className="font-mont sm:text-xl mobile:text-base px-4 text-justify">
               {data.text}
             </p>
           </div>
-          <main className="px-8 pt-4 pb-4 lg:w-2/3 lg:px-[calc(100vw/12)] h-fit grid grid-cols-2 gap-6 bg-white mt-12 mb-12 bg-opacity-60 rounded-lg">
-            <div className="flex flex-col items-center justify-center">
-              <h1 className="p-3 mobile:text-xl sm:text-2xl font-mont">
+
+          <div className="flex flex-col items-center lg:w-2/3 bg-white bg-opacity-60 rounded-lg mt-12 mb-12 p-6 sm:flex-row sm:justify-around">
+            <div className="flex flex-col items-center">
+              <h3 className="font-mont text-xl sm:text-2xl">
                 Are You a Caterer?
-              </h1>
+              </h3>
               <img
                 src="https://cdn-icons-png.flaticon.com/512/1940/1940899.png"
-                alt="caterer.png"
-                className="mobile:h-20"
+                alt="caterer"
+                className="h-16 mt-4 sm:h-20"
               />
-              <button className="p-4 mt-4 sm:text-base mobile:text-xs transition ease-in-out delay-150 hover:scale-110 font-semibold text-black bg-phorange rounded shadow font-mont hover:text-white hover:bg-orange-600 hover:rounded-md">
-                <Link to="/csignup">Create Caterer Profile</Link>
-              </button>
+              <Link to="/csignup">
+                <button className="bg-phorange text-black font-semibold p-4 mt-4 rounded transition hover:bg-orange-600 hover:text-white">
+                  Create Caterer Profile
+                </button>
+              </Link>
             </div>
-            <div className="flex flex-col items-center">
-              <h1 className="p-3 mobile:text-xl sm:text-2xl font-mont">
+
+            <div className="flex flex-col items-center mt-6 sm:mt-0">
+              <h3 className="font-mont text-xl sm:text-2xl">
                 Are You a Customer?
-              </h1>
+              </h3>
               <img
                 src="https://cdn-icons-png.flaticon.com/512/4149/4149881.png"
-                alt="customer.png"
-                className="mobile:h-20"
+                alt="customer"
+                className="h-16 mt-4 sm:h-20"
               />
-              <button className="p-4 mt-4 transition sm:text-base mobile:text-xs ease-in-out delay-150 hover:scale-110 font-semibold text-black bg-phorange rounded shadow font-mont hover:text-white hover:bg-orange-600 hover:rounded-md size-5px">
-                <Link to="/usersignup">Create User Profile</Link>
-              </button>
+              <Link to="/usersignup">
+                <button className="bg-phorange text-black font-semibold p-4 mt-4 rounded transition hover:bg-orange-600 hover:text-white">
+                  Create User Profile
+                </button>
+              </Link>
             </div>
-          </main>
+          </div>
         </div>
       </section>
     </div>
