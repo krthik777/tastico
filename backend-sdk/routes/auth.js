@@ -15,7 +15,7 @@ router.post("/usignup", async (req, res) => {
     console.log(req.body);
     const user = await User.create({
       ...req.body,
-      password: bcrypt.hashSync(req.body.password, 10),
+      password: req.body.password
     });
     res.status(201).json({ user: user._id });
   } catch (error) {
@@ -41,7 +41,7 @@ router.post("/csignup", async (req, res) => {
       comp_name: comp_name,
       b_type: b_type,
       c_email: c_email,
-      c_password: bcrypt.hashSync(c_password, salt),
+      c_password: c_password,
       c_phone: c_phone,
       c_address: c_address,
       c_username: c_username,
@@ -88,7 +88,7 @@ router.post("/ulogin", async (req, res) => {
     const { username, password } = req.body;
     const auth = await User.findOne({ username: username });
     if (auth) {
-      if (bcrypt.compareSync(password, auth.password)) {
+      if (password == auth.password) {
         const token = jwt.sign({ id: auth._id }, "secret-key");
         res
           .status(200)
