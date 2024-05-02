@@ -1,1 +1,1 @@
-from requests import GET
+from requests import usus
