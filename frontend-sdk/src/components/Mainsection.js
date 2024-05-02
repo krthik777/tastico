@@ -1,22 +1,16 @@
-import React, { useEffect } from 'react';
-import { useCookies } from 'react-cookie'; 
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import prompts from './prompts.json';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import prompts from "./prompts.json";
 
 const Mainsection = () => {
-  const [cookies] = useCookies(['token']);
-
-  console.log(cookies)
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (cookies.user) {
-      navigate('/home'); 
-    }
-  }, [cookies, navigate]);
-
+  const token = localStorage.getItem("token");
+  if (token) {
+    navigate("/home");
+  }
+  
   let data =
     prompts.catchlines[Math.floor(Math.random() * prompts.catchlines.length)];
 
@@ -25,10 +19,10 @@ const Mainsection = () => {
       <section
         style={{
           backgroundImage:
-            'linear-gradient(to bottom, rgba(0, 1, 3, 0.8), rgba(1, 29, 87, 0.7)), url(https://assets.cntraveller.in/photos/60ba1a540f3a5367ec9fe38e/master/pass/image-1366x768.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+            "linear-gradient(to bottom, rgba(0, 1, 3, 0.8), rgba(1, 29, 87, 0.7)), url(https://assets.cntraveller.in/photos/60ba1a540f3a5367ec9fe38e/master/pass/image-1366x768.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
         className="flex flex-col lg:pb-[24px] items-center mobile:w-full mobile:h-full p-4 mobile:pb-20 mobile:pt-20 bg-black lg:py-0"
       >
